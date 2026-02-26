@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Wishborn Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --warm-terracotta: #D4836F;
+            --soft-peach: #F5D4C8;
+            --warm-beige: #E8DDD0;
+            --deep-brown: #6B5446;
+            --cream: #FFF8F3;
+            --warm-gold: #C9A26D;
+            --light-warm: #FDF6F0;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: var(--deep-brown);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        /* Navigation - Same as index.html */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--deep-brown);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            margin-left: 60px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--deep-brown);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--warm-terracotta);
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--deep-brown);
+            font-weight: 700;
+            font-size: 10.5px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .lang-switch:hover {
+            color: var(--warm-terracotta);
+        }
+
+        .lang-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: white;
+            border: 2px solid var(--warm-beige);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            min-width: 80px;
+            z-index: 100;
+        }
+
+        .lang-switch:hover .lang-menu,
+        .lang-switch:focus .lang-menu {
+            display: block;
+        }
+
+        .lang-menu a {
+            display: block;
+            padding: 10px 16px;
+            color: var(--deep-brown);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .lang-menu a:hover {
+            background: var(--light-warm);
+        }
+
+        .lang-menu a:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .lang-menu a:last-child {
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding-top: 100px;
+            padding-bottom: 60px;
+            background: var(--light-warm);
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--deep-brown);
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 18px;
+            color: #8B7355;
+        }
+
+        /* Product Line Section */
+        .product-line {
+            padding: 80px 0;
+        }
+
+        .product-line.alt {
+            background: var(--light-warm);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .line-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .line-content.reverse {
+            direction: rtl;
+        }
+
+        .line-content.reverse > * {
+            direction: ltr;
+        }
+
+        .line-image {
+            width: 100%;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(107, 84, 70, 0.15);
+        }
+
+        .line-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .line-info h2 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--deep-brown);
+            margin-bottom: 20px;
+        }
+
+        .line-badge {
+            display: inline-block;
+            padding: 8px 18px;
+            background: var(--warm-gold);
+            color: white;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .line-description {
+            font-size: 16px;
+            color: #6B5446;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .line-cta {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--warm-terracotta);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 20px rgba(212, 131, 111, 0.3);
+        }
+
+        .line-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(212, 131, 111, 0.4);
+        }
+
+        /* Product Grid - Hidden by default */
+        .product-grid {
+            display: none;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .product-grid.active {
+            display: grid;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 2px solid var(--warm-beige);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(107, 84, 70, 0.15);
+        }
+
+        .product-card-image {
+            width: 100%;
+            height: 320px;
+            background: var(--light-warm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .product-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .product-card-content {
+            padding: 25px;
+        }
+
+        .product-category {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--warm-gold);
+            color: white;
+            border-radius: 15px;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-card-content h3 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--deep-brown);
+            margin-bottom: 10px;
+        }
+
+        .product-tagline {
+            font-size: 13px;
+            color: #8B7355;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .product-price-box {
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+        }
+
+        .price-amount {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--warm-terracotta);
+        }
+
+        .price-label {
+            font-size: 14px;
+            color: #8B7355;
+        }
+
+        /* Footer - Same as index.html */
+        .footer {
+            background: var(--deep-brown);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 2fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .footer-logo {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-contact p {
+            color: rgba(255,255,255,0.7);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .footer-contact strong {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .footer-info {
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .page-header p {
+                font-size: 15px;
+            }
+
+            .product-line {
+                padding: 50px 0;
+            }
+
+            .line-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .line-info h2 {
+                font-size: 28px;
+            }
+
+            .line-description {
+                font-size: 14px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+
+            .product-card-image {
+                height: 200px;
+                padding: 20px;
+            }
+
+            .product-card-content {
+                padding: 15px;
+            }
+
+            .product-card-content h3 {
+                font-size: 15px;
+            }
+
+            .product-tagline {
+                font-size: 11px;
+            }
+
+            .price-amount {
+                font-size: 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding-top: 80px;
+                padding-bottom: 40px;
+            }
+
+            .page-header h1 {
+                font-size: 26px;
+            }
+
+            .line-info h2 {
+                font-size: 24px;
+            }
+
+            .product-grid {
+                gap: 15px;
+            }
+
+            .product-card-image {
+                height: 160px;
+            }
+
+            .product-card-content h3 {
+                font-size: 13px;
+            }
+
+            .price-amount {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Wishborn Care</a>
+            <ul class="nav-links">
+                <li><a href="brand-story.html">Brand Story</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+            <div class="lang-switch" tabindex="0">
+                &lt; KR
+                <div class="lang-menu">
+                    <a href="#" onclick="alert('한국어 사이트입니다.'); return false;">KR</a>
+                    <a href="#" onclick="alert('English version coming soon!'); return false;">EN</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Products</h1>
+            <p>임신 여정의 모든 단계를 함께합니다</p>
+        </div>
+    </section>
+
+    <!-- Essential Care Line -->
+    <section class="product-line" id="essential-care">
+        <div class="container">
+            <div class="line-content">
+                <div class="line-image">
+                    <img src="images/product-relaxing-leg-new.jpg" alt="Essential Care">
+                </div>
+                <div class="line-info">
+                    <span class="line-badge">Line 1</span>
+                    <h2>Essential Care</h2>
+                    <p class="line-description">
+                        임신 준비와 임신 초·중·후기의 가장 흔한 고민인 하지 부종과 피로를 케어합니다.<br>
+                        호르몬 치료와 체중 증가로 인한 다리의 무거움, 열감, 붓기를 즉각적으로 완화합니다.
+                    </p>
+                    <a href="#" class="line-cta" onclick="toggleProducts('essential'); return false;">제품 보기</a>
+                </div>
+            </div>
+            
+            <div class="product-grid" id="essential-products">
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="images/product-relaxing-leg-new.jpg" alt="Relaxing Leg Cream">
+                    </div>
+                    <div class="product-card-content">
+                        <span class="product-category">Essential Care</span>
+                        <h3>Relaxing Leg Cream</h3>
+                        <p class="product-tagline">하루 종일 붓고 무거운 다리, 즉시 가볍게</p>
+                        <div class="product-price-box">
+                            <span class="price-amount">24,900</span>
+                            <span class="price-label">원</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="images/product-allinone-new.jpg" alt="All-in-One Cream">
+                    </div>
+                    <div class="product-card-content">
+                        <span class="product-category">Essential Care</span>
+                        <h3>All-in-One Cream</h3>
+                        <p class="product-tagline">올인원 수분 크림</p>
+                        <div class="product-price-box">
+                            <span class="price-amount">24,900</span>
+                            <span class="price-label">원</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Care Line -->
+    <section class="product-line alt" id="advanced-care">
+        <div class="container">
+            <div class="line-content reverse">
+                <div class="line-image">
+                    <img src="images/product-nipple-new.jpg" alt="Advanced Care">
+                </div>
+                <div class="line-info">
+                    <span class="line-badge">Line 2</span>
+                    <h2>Advanced Care</h2>
+                    <p class="line-description">
+                        튼살 예방, 가슴 민감 케어, 얼굴 쿨링 등 임신 중 전신에서 발생하는 다양한 피부 고민을 해결합니다.<br>
+                        전문적인 케어로 임신 기간의 피부 변화에 대응합니다.
+                    </p>
+                    <a href="#" class="line-cta" onclick="toggleProducts('advanced'); return false;">제품 보기</a>
+                </div>
+            </div>
+            
+            <div class="product-grid" id="advanced-products">
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="images/product-nipple-new.jpg" alt="Nipple Care Cream">
+                    </div>
+                    <div class="product-card-content">
+                        <span class="product-category">Advanced Care</span>
+                        <h3>Nipple Care Cream</h3>
+                        <p class="product-tagline">니플 케어 크림</p>
+                        <div class="product-price-box">
+                            <span class="price-amount">22,900</span>
+                            <span class="price-label">원</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="images/product-belly-balm.jpg" alt="Soothing Belly Balm">
+                    </div>
+                    <div class="product-card-content">
+                        <span class="product-category">Advanced Care</span>
+                        <h3>Soothing Belly Balm</h3>
+                        <p class="product-tagline">수딩 벨리 밤</p>
+                        <div class="product-price-box">
+                            <span class="price-amount">28,900</span>
+                            <span class="price-label">원</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Baby Care Line -->
+    <section class="product-line" id="baby-care">
+        <div class="container">
+            <div class="line-content">
+                <div class="line-image">
+                    <img src="images/product-diaper-pink.jpg" alt="Baby Care">
+                </div>
+                <div class="line-info">
+                    <span class="line-badge">Line 3</span>
+                    <h2>Baby Care</h2>
+                    <p class="line-description">
+                        아기의 민감한 피부를 위한 순한 케어 제품들입니다.<br>
+                        기저귀 발진, 건조함 등 아기 피부의 다양한 고민을 안전하게 해결합니다.
+                    </p>
+                    <a href="#" class="line-cta" onclick="toggleProducts('baby'); return false;">제품 보기</a>
+                </div>
+            </div>
+            
+            <div class="product-grid" id="baby-products">
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="images/product-diaper-pink.jpg" alt="Baby Diaper Rash Cream">
+                    </div>
+                    <div class="product-card-content">
+                        <span class="product-category">Baby Care</span>
+                        <h3>Baby Diaper Rash Cream</h3>
+                        <p class="product-tagline">기저귀 발진 크림 (핑크)</p>
+                        <div class="product-price-box">
+                            <span class="price-amount">19,900</span>
+                            <span class="price-label">원</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-card-image">
+                        <img src="images/product-diaper-mint.jpg" alt="Baby Diaper Rash Cream">
+                    </div>
+                    <div class="product-card-content">
+                        <span class="product-category">Baby Care</span>
+                        <h3>Baby Diaper Rash Cream</h3>
+                        <p class="product-tagline">기저귀 발진 크림 (민트)</p>
+                        <div class="product-price-box">
+                            <span class="price-amount">19,900</span>
+                            <span class="price-label">원</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">Wishborn Care</div>
+                    <p>- with your journey together</p>
+                </div>
+
+                <div class="footer-contact">
+                    <p><strong>CEO</strong> Sarah Lim</p>
+                    <p><strong>ADDRESS</strong> 서울시 서초구 매헌로16, 1501호</p>
+                    <p><strong>E-MAIL</strong> wishborncare@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-info">
+                    © 2026 Wishborn Care. All rights reserved.<br>
+                    당신의 여정, 가볍게 함께
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleProducts(line) {
+            const productGrid = document.getElementById(line + '-products');
+            productGrid.classList.toggle('active');
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Story - Wishborn Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --warm-terracotta: #D4836F;
+            --soft-peach: #F5D4C8;
+            --warm-beige: #E8DDD0;
+            --deep-brown: #6B5446;
+            --cream: #FFF8F3;
+            --warm-gold: #C9A26D;
+            --light-warm: #FDF6F0;
+            --muted-rose: #E8B4A0;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: var(--deep-brown);
+            line-height: 1.6;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--deep-brown);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+            margin-left: 60px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--deep-brown);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--warm-terracotta);
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--deep-brown);
+            font-weight: 700;
+            font-size: 10.5px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .lang-switch:hover { color: var(--warm-terracotta); }
+
+        .lang-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: white;
+            border: 2px solid var(--warm-beige);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            min-width: 80px;
+            z-index: 100;
+        }
+
+        .lang-switch:hover .lang-menu,
+        .lang-switch:focus .lang-menu { display: block; }
+
+        .lang-menu a {
+            display: block;
+            padding: 10px 16px;
+            color: var(--deep-brown);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .lang-menu a:hover { background: var(--light-warm); }
+        .lang-menu a:first-child { border-radius: 10px 10px 0 0; }
+        .lang-menu a:last-child { border-radius: 0 0 10px 10px; }
+
+        /* Hero Video Section */
+        .hero-video {
+            position: relative;
+            width: 100%;
+            height: 85vh;
+            min-height: 500px;
+            overflow: hidden;
+            margin-top: 65px;
+        }
+
+        .hero-video img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 52px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            font-weight: 400;
+            opacity: 0.95;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+        }
+
+        /* Content Sections */
+        section { padding: 80px 0; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-title {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 42px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--deep-brown);
+        }
+
+        /* Etymology Section */
+        .etymology { background: white; }
+
+        .etymology-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .brand-name {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 56px;
+            font-weight: 700;
+            color: var(--warm-terracotta);
+            margin-bottom: 30px;
+        }
+
+        .etymology-breakdown {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .etymology-part {
+            background: var(--light-warm);
+            padding: 30px 40px;
+            border-radius: 20px;
+            border: 2px solid var(--warm-beige);
+        }
+
+        .etymology-part h3 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--warm-terracotta);
+            margin-bottom: 10px;
+        }
+
+        .etymology-part p { font-size: 18px; color: #8B7355; }
+
+        .etymology-meaning {
+            font-size: 20px;
+            color: var(--deep-brown);
+            margin: 40px 0;
+            line-height: 1.8;
+        }
+
+        .korean-name {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 28px;
+            color: var(--warm-terracotta);
+            font-weight: 600;
+        }
+
+        /* Infertility Journey Section */
+        .infertility-journey {
+            background: var(--cream);
+            padding: 80px 0;
+        }
+
+        .journey-intro {
+            max-width: 780px;
+            margin: 0 auto 60px;
+            text-align: center;
+        }
+
+        .journey-intro p {
+            font-size: 18px;
+            line-height: 2;
+            color: var(--deep-brown);
+        }
+
+        .journey-stages {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .journey-stage {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid var(--warm-beige);
+        }
+
+        .stage-number {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--warm-terracotta);
+            margin-bottom: 20px;
+        }
+
+        .journey-stage h3 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--deep-brown);
+            margin-bottom: 15px;
+        }
+
+        .journey-stage p {
+            line-height: 1.8;
+            color: #6B5446;
+        }
+
+        .empathy-quotes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .empathy-quote {
+            background: white;
+            padding: 40px;
+            border-left: 5px solid var(--warm-terracotta);
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .empathy-quote p {
+            font-style: italic;
+            line-height: 1.8;
+            color: var(--deep-brown);
+        }
+
+        /* Brand Philosophy */
+        .philosophy { 
+            background: white;
+            padding: 100px 0;
+        }
+
+        .philosophy-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .philosophy-image {
+            width: 100%;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .philosophy-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .philosophy-content {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .philosophy-content h2 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--deep-brown);
+            margin-bottom: 25px;
+        }
+
+        .philosophy-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--deep-brown);
+            margin-bottom: 15px;
+        }
+
+        .philosophy-highlight {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--warm-terracotta);
+            margin-top: 30px;
+        }
+
+        /* Core Values */
+        .values { background: var(--light-warm); }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 20px;
+            border: 2px solid var(--warm-beige);
+        }
+
+        .value-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--warm-terracotta);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 20px;
+        }
+
+        .value-card h4 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--deep-brown);
+            margin-bottom: 15px;
+        }
+
+        .value-card p {
+            line-height: 1.6;
+            color: #8B7355;
+            font-size: 14px;
+        }
+
+        /* Closing Message */
+        .closing-message {
+            background: var(--cream);
+            text-align: center;
+            padding: 100px 40px;
+        }
+
+        .closing-message h2 {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: var(--deep-brown);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .closing-message p {
+            font-size: 18px;
+            line-height: 2;
+            color: var(--deep-brown);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Footer */
+        .footer {
+            background: white;
+            padding: 60px 0 30px;
+            border-top: 1px solid var(--warm-beige);
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .footer-logo {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--deep-brown);
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: var(--deep-brown);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .footer-contact p {
+            margin-bottom: 12px;
+            color: var(--deep-brown);
+            font-size: 14px;
+        }
+
+        .footer-contact strong {
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--warm-beige);
+        }
+
+        .footer-info {
+            font-size: 13px;
+            color: var(--deep-brown);
+            opacity: 0.7;
+            line-height: 1.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .journey-stages { grid-template-columns: 1fr; }
+            .empathy-quotes { grid-template-columns: 1fr; }
+            .values-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 20px; }
+            .logo { font-size: 20px; }
+            .nav-links { gap: 20px; margin-left: 0; }
+            .nav-links a { font-size: 13px; }
+            .lang-switch { font-size: 9px; }
+            .hero-video { height: 60vh; min-height: 400px; margin-top: 60px; }
+            .hero-content h1 { font-size: 32px; }
+            .hero-content p { font-size: 16px; }
+            .section-title { font-size: 32px; margin-bottom: 35px; }
+            .philosophy-container { grid-template-columns: 1fr; gap: 30px; }
+            .philosophy-image { height: 300px; }
+            .philosophy-content { padding: 20px; }
+            .philosophy-content h2 { font-size: 28px; }
+            .philosophy-content p { font-size: 16px; }
+            .values-grid { grid-template-columns: 1fr; }
+            .closing-message h2 { font-size: 28px; }
+            .closing-message p { font-size: 16px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 18px; }
+            .nav-links { gap: 15px; font-size: 12px; }
+            .nav-links a { font-size: 12px; }
+            .hero-video { height: 50vh; min-height: 350px; }
+            .hero-content h1 { font-size: 26px; }
+            .hero-content p { font-size: 14px; }
+            .section-title { font-size: 26px; }
+            .philosophy-image { height: 250px; }
+            .philosophy-content h2 { font-size: 24px; }
+            .philosophy-content p { font-size: 15px; }
+            .closing-message h2 { font-size: 24px; }
+            .closing-message p { font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Wishborn Care</a>
+            <ul class="nav-links">
+                <li><a href="brand-story.html">Brand Story</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <div class="lang-switch" tabindex="0">
+                &lt; KR
+                <div class="lang-menu">
+                    <a href="#ko">한국어 (KR)</a>
+                    <a href="#en">English (EN)</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Video Section -->
+    <section class="hero-video">
+        <img src="images/hero-brand-story.jpg" alt="Wishborn Care Brand Story">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Brand Story</h1>
+                <p>당신의 여정을 이해하는 브랜드</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Etymology -->
+    <section class="etymology">
+        <div class="container">
+            <div class="etymology-content">
+                <h2 class="brand-name">Wishborn</h2>
+                <div class="etymology-breakdown">
+                    <div class="etymology-part">
+                        <h3>Wish</h3>
+                        <p>소망, 간절함</p>
+                    </div>
+                    <div class="etymology-part">
+                        <h3>Born</h3>
+                        <p>태어나다</p>
+                    </div>
+                </div>
+                <p class="etymology-meaning">
+                    "소망이 마침내 태어나다"<br><br>
+                    간절히 바라던 생명이 비로소 품에 안기는 그 순간.<br>
+                    Wishborn Care는 그 긴 여정 속에서 당신과 함께합니다.
+                </p>
+                <p class="korean-name">위시본 케어</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infertility Journey Section -->
+    <section class="infertility-journey">
+        <div class="container">
+            <h2 class="section-title">난임의 여정을 압니다</h2>
+            <div class="journey-intro">
+                <p>
+                    난임은 단순한 의학적 진단이 아닙니다.<br>
+                    매달 반복되는 기다림과 실망, 시술의 고통,<br>
+                    그리고 '이번엔 될까'라는 간절함이 뒤섞인 삶 전체의 이야기입니다.<br>
+                    Wishborn Care는 그 여정을 직접 걸어온 사람들이 만든 브랜드입니다.
+                </p>
+            </div>
+            <div class="journey-stages">
+                <div class="journey-stage">
+                    <div class="stage-number">01</div>
+                    <h3>검사와 진단의 시작</h3>
+                    <p>
+                        처음 난임 진단을 받던 날의 막막함.<br>
+                        '내가 잘못한 건 아닐까'라는 자책,
+                        그리고 쏟아지는 정보 속에서 무엇을 믿어야 할지 모르는 혼란.
+                        우리는 그 순간을 기억합니다.
+                    </p>
+                </div>
+                <div class="journey-stage">
+                    <div class="stage-number">02</div>
+                    <h3>시술과 호르몬의 파도</h3>
+                    <p>
+                        인공수정, 시험관 시술, 매일의 주사와 채혈.
+                        호르몬 치료로 달라지는 몸과 감정.
+                        복부 팽만, 하지 부종, 극심한 피로—
+                        몸은 비명을 지르지만 내색하기 어려운 나날들.
+                    </p>
+                </div>
+                <div class="journey-stage">
+                    <div class="stage-number">03</div>
+                    <h3>기다림과 이식의 두 주</h3>
+                    <p>
+                        이식 후 2주간의 침묵.<br>
+                        몸의 모든 신호에 귀 기울이며 보내는 시간.
+                        그 기다림 속에서 몸을 편안하게 유지하는 것이
+                        얼마나 중요한지, 우리는 압니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Empathy Quotes -->
+            <div class="empathy-quotes">
+                <div class="empathy-quote">
+                    <p>
+                        시술하는 날이면 다리가 너무 붓고 무거워서
+                        퇴근 후 계단도 힘들었어요.
+                        임산부용 제품은 넘쳐나는데,
+                        난임 시술 중에 쓸 수 있는 건 아무것도 없었어요.
+                    </p>
+                </div>
+                <div class="empathy-quote">
+                    <p>
+                        호르몬 주사를 맞고 나면 온몸이 묵직해지는데,
+                        '이게 정상인가' 물어볼 데가 없었어요.
+                        이런 고통이 혼자만의 것이 아니라는 걸
+                        그때는 몰랐어요.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Philosophy -->
+    <section class="philosophy">
+        <div class="philosophy-container">
+            <div class="philosophy-image">
+                <img src="images/philosophy-left.jpg" alt="Wishborn Care Philosophy">
+            </div>
+            
+            <div class="philosophy-content">
+                <h2>Brand Philosophy</h2>
+                <p>
+                    난임부터 임신까지<br>
+                    진심 어린 공감과 안전한 케어
+                </p>
+                <p class="philosophy-highlight">
+                    당신의 여정을 이해하는<br>
+                    안전하고 효과적인 제품
+                </p>
+            </div>
+            
+            <div class="philosophy-image">
+                <img src="images/philosophy-right.jpg" alt="Wishborn Care Values">
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="values">
+        <div class="container">
+            <h2 class="section-title">Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-check"></i>
+                    </div>
+                    <h4>Safety First</h4>
+                    <p>시술 단계별 금지 성분 철저 배제<br>제약 전문가 협력 성분 검증</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h4>Science-Backed</h4>
+                    <p>임상 데이터 기반 성분 선정<br>효과가 검증된 포뮬레이션</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h4>Empathy & Care</h4>
+                    <p>난임 시술의 진짜 고통을 아는<br>진심 어린 공감과 위로</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4>Sustainable</h4>
+                    <p>환경을 생각하는 포장<br>지속 가능한 원료 사용</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Closing Message -->
+    <section class="closing-message">
+        <div class="container">
+            <h2>
+                오늘도 긴 여정을 걷고 있는<br>
+                모든 분께
+            </h2>
+            <p>
+                난임의 여정은 쉽지 않습니다.<br>
+                하지만 당신은 혼자가 아닙니다.<br>
+                Wishborn Care는 첫 시술 날부터, 임신이 확인되는 순간까지,<br>
+                그리고 출산 이후까지—<br>
+                당신의 모든 여정을 조용히, 그러나 든든하게 함께합니다.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo">Wishborn Care</div>
+                    <p>- with your journey together</p>
+                </div>
+
+                <div class="footer-contact">
+                    <p><strong>CEO</strong> Sarah Lim</p>
+                    <p><strong>ADDRESS</strong> 서울시 서초구 매헌로16, 1501호</p>
+                    <p><strong>E-MAIL</strong> wishborncare@gmail.com</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="footer-info">
+                    © 2026 Wishborn Care. All rights reserved.<br>
+                    당신의 여정, 가볍게 함께
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

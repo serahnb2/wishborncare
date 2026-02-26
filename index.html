@@ -39,7 +39,7 @@
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            padding: 20px 0;
+            padding: 15px 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
@@ -84,33 +84,68 @@
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            padding: 6px 12px;
-            border: 2px solid var(--warm-terracotta);
-            border-radius: 20px;
-            transition: all 0.3s;
+            color: var(--deep-brown);
+            font-weight: 700;
+            font-size: 10.5px;
+            padding: 0;
+            border: none;
+            background: transparent;
             cursor: pointer;
-            background: white;
-        }
-
-        .lang-switch img {
-            width: 24px;
-            height: 18px;
-            object-fit: cover;
-            border-radius: 2px;
+            position: relative;
         }
 
         .lang-switch:hover {
-            background: var(--warm-terracotta);
-            color: white;
+            color: var(--warm-terracotta);
         }
 
-        /* Hero Section - 좌측 텍스트 + 우측 이미지 */
+        .lang-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: white;
+            border: 2px solid var(--warm-beige);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            min-width: 80px;
+            z-index: 100;
+        }
+
+        .lang-switch:hover .lang-menu,
+        .lang-switch:focus .lang-menu {
+            display: block;
+        }
+
+        .lang-menu a {
+            display: block;
+            padding: 10px 16px;
+            color: var(--deep-brown);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .lang-menu a:hover {
+            background: var(--light-warm);
+        }
+
+        .lang-menu a:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .lang-menu a:last-child {
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 85vh;
             width: 100%;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            padding-top: 70px;
             background: var(--light-warm);
         }
 
@@ -128,23 +163,23 @@
             font-family: 'Noto Serif KR', serif;
             font-size: 39.2px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: var(--deep-brown);
-            line-height: 1.2;
+            line-height: 1.15;
         }
 
         .hero-text .tagline {
             font-size: 24px;
             color: var(--warm-terracotta);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-weight: 500;
         }
 
         .hero-text .description {
             font-size: 16px;
-            line-height: 1.8;
+            line-height: 1.6;
             color: #6B5446;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .hero-cta {
@@ -181,7 +216,7 @@
 
         /* Section Common Styles */
         section {
-            padding: 100px 0;
+            padding: 60px 0;
             width: 100%;
         }
 
@@ -200,7 +235,7 @@
             color: var(--deep-brown);
         }
 
-        /* Best Section - 4개 제품 그리드 */
+        /* Best Seller Section */
         .best {
             background: white;
         }
@@ -259,130 +294,86 @@
             color: var(--warm-terracotta);
         }
 
-        /* Products Section */
-        .products {
+        /* Brand Story Section */
+        .brand-story {
             background: var(--cream);
+            padding: 80px 0;
         }
 
-        .product-grid {
+        .brand-story-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .brand-story-highlight {
+            font-family: 'Noto Serif KR', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--warm-terracotta);
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .brand-story-text {
+            font-size: 18px;
+            line-height: 1.9;
+            color: var(--deep-brown);
+            margin-bottom: 25px;
+        }
+
+        .brand-story-values {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 30px;
+            margin: 50px 0;
         }
 
-        .product-card {
+        .story-value-card {
             background: white;
+            padding: 35px;
             border-radius: 20px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
             border: 2px solid var(--warm-beige);
-            display: flex;
-            flex-direction: column;
         }
 
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(107, 84, 70, 0.15);
-        }
-
-        .product-card-image {
-            width: 100%;
-            height: 320px;
-            background: var(--light-warm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            position: relative;
-        }
-
-        .product-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .product-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-
-        .product-badge.status-available {
-            background: #D4EDDA;
-            color: #155724;
-        }
-
-        .product-badge.status-coming {
-            background: #FFF3CD;
-            color: #856404;
-        }
-
-        .product-card-content {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-category {
-            display: inline-block;
-            padding: 6px 14px;
-            background: var(--warm-gold);
-            color: white;
-            border-radius: 15px;
-            font-size: 10px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            align-self: flex-start;
-        }
-
-        .product-card-content h3 {
+        .story-value-card h4 {
             font-family: 'Noto Serif KR', serif;
             font-size: 20px;
             font-weight: 700;
             color: var(--deep-brown);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
-        .product-tagline {
-            font-size: 13px;
-            color: #8B7355;
-            margin-bottom: 20px;
-            line-height: 1.6;
+        .story-value-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #6B5446;
         }
 
-        .product-price-box {
-            display: flex;
-            align-items: baseline;
-            gap: 5px;
-            margin-top: auto;
+        .view-all-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 14px 40px;
+            background: var(--warm-terracotta);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s;
         }
 
-        .price-amount {
-            font-family: 'Noto Serif KR', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--warm-terracotta);
-        }
-
-        .price-label {
-            font-size: 14px;
-            color: #8B7355;
+        .view-all-btn:hover {
+            background: var(--deep-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(107, 84, 70, 0.3);
         }
 
         /* Footer */
         .footer {
-            background: var(--deep-brown);
-            color: white;
+            background: white;
             padding: 60px 0 30px;
+            border-top: 1px solid var(--warm-beige);
         }
 
         .footer-container {
@@ -393,122 +384,99 @@
 
         .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 2fr;
+            grid-template-columns: 1fr 1fr;
             gap: 60px;
             margin-bottom: 40px;
         }
 
         .footer-brand .footer-logo {
             font-family: 'Noto Serif KR', serif;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
+            color: var(--deep-brown);
             margin-bottom: 15px;
         }
 
         .footer-brand p {
-            color: rgba(255,255,255,0.7);
+            color: var(--deep-brown);
             font-size: 14px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .footer-section h4 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: white;
+            opacity: 0.8;
         }
 
         .footer-contact p {
-            color: rgba(255,255,255,0.7);
+            margin-bottom: 12px;
+            color: var(--deep-brown);
             font-size: 14px;
-            margin-bottom: 10px;
         }
 
         .footer-contact strong {
-            color: white;
+            font-weight: 600;
+            margin-right: 10px;
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 30px;
             text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--warm-beige);
         }
 
         .footer-info {
-            color: rgba(255,255,255,0.5);
             font-size: 13px;
+            color: var(--deep-brown);
+            opacity: 0.7;
             line-height: 1.8;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             .nav-container {
-                padding: 0 20px;
-                flex-wrap: wrap;
-                gap: 15px;
+                padding: 0 15px;
             }
 
             .logo {
-                font-size: 22px;
+                font-size: 20px;
             }
 
             .nav-links {
-                display: flex;
-                flex-direction: row;
-                gap: 20px;
-                width: 100%;
-                justify-content: center;
-                padding: 10px 0;
-                order: 3;
+                gap: 15px;
                 margin-left: 0;
             }
 
             .nav-links a {
-                font-size: 13px;
+                font-size: 12px;
             }
 
-            .lang-switch img {
-                width: 22px;
-                height: 16px;
+            .lang-switch {
+                font-size: 9px;
+            }
+
+            .hero {
+                min-height: auto;
+                padding-top: 80px;
+                padding-bottom: 40px;
             }
 
             .hero-container {
                 grid-template-columns: 1fr;
-                gap: 40px;
-                padding: 40px 20px;
+                gap: 30px;
+                padding: 30px 20px;
             }
 
             .hero-text h1 {
-                font-size: 27.4px;
-                line-height: 1.3;
+                font-size: 24px;
+                line-height: 1.2;
+                margin-bottom: 12px;
             }
 
             .hero-text .tagline {
-                font-size: 18px;
+                font-size: 16px;
+                margin-bottom: 15px;
             }
 
             .hero-text .description {
-                font-size: 13px;
-                line-height: 1.7;
+                font-size: 12px;
+                line-height: 1.5;
+                margin-bottom: 20px;
             }
 
             .hero-cta {
@@ -516,13 +484,17 @@
                 font-size: 14px;
             }
 
+            section {
+                padding: 40px 0;
+            }
+
             .container {
                 padding: 0 20px;
             }
 
             .section-title {
-                font-size: 28px;
-                margin-bottom: 35px;
+                font-size: 24px;
+                margin-bottom: 30px;
             }
 
             .best-grid {
@@ -531,7 +503,7 @@
             }
 
             .best-product-image {
-                height: 200px;
+                height: 180px;
                 padding: 15px;
             }
 
@@ -541,49 +513,6 @@
 
             .best-product-info .price {
                 font-size: 16px;
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .product-card-image {
-                height: 200px;
-                padding: 15px;
-            }
-
-            .product-card-content {
-                padding: 15px;
-            }
-
-            .product-category {
-                font-size: 9px;
-                padding: 5px 10px;
-            }
-
-            .product-card-content h3 {
-                font-size: 14px;
-                margin-bottom: 8px;
-            }
-
-            .product-tagline {
-                font-size: 11px;
-                margin-bottom: 12px;
-                line-height: 1.4;
-            }
-
-            .price-amount {
-                font-size: 19px;
-            }
-
-            .price-label {
-                font-size: 11px;
-            }
-
-            .product-badge {
-                font-size: 9px;
-                padding: 6px 10px;
             }
 
             .footer-grid {
@@ -594,24 +523,75 @@
             .footer-contact p {
                 font-size: 13px;
             }
-        }
 
-        @media (max-width: 480px) {
-            .hero-text h1 {
-                font-size: 19.6px;
-                line-height: 1.3;
+            .brand-story-highlight {
+                font-size: 26px;
             }
 
-            .hero-text .tagline {
+            .brand-story-text {
                 font-size: 16px;
             }
 
+            .brand-story-values {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .story-value-card {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 12px 0;
+            }
+
+            .nav-container {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .nav-links a {
+                font-size: 11px;
+                gap: 12px;
+            }
+
+            .lang-switch {
+                font-size: 8px;
+            }
+
+            .hero {
+                padding-top: 75px;
+            }
+
+            .hero-container {
+                padding: 20px 15px;
+                gap: 25px;
+            }
+
+            .hero-text h1 {
+                font-size: 20px;
+                line-height: 1.2;
+                margin-bottom: 10px;
+            }
+
+            .hero-text .tagline {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+
             .hero-text .description {
-                font-size: 12px;
+                font-size: 11px;
+                line-height: 1.5;
+                margin-bottom: 18px;
             }
 
             .section-title {
-                font-size: 24px;
+                font-size: 22px;
             }
 
             .best-grid {
@@ -620,12 +600,12 @@
             }
 
             .best-product-image {
-                height: 180px;
+                height: 160px;
                 padding: 12px;
             }
 
             .best-product-info {
-                padding: 15px;
+                padding: 12px;
             }
 
             .best-product-info h4 {
@@ -633,49 +613,7 @@
             }
 
             .best-product-info .price {
-                font-size: 15px;
-            }
-
-            .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-
-            .product-card-image {
-                height: 180px;
-                padding: 12px;
-            }
-
-            .product-card-content {
-                padding: 12px;
-            }
-
-            .product-category {
-                font-size: 8px;
-                padding: 4px 8px;
-            }
-
-            .product-card-content h3 {
-                font-size: 13px;
-                margin-bottom: 6px;
-            }
-
-            .product-tagline {
-                font-size: 10px;
-                margin-bottom: 10px;
-            }
-
-            .price-amount {
-                font-size: 17px;
-            }
-
-            .price-label {
-                font-size: 10px;
-            }
-
-            .product-badge {
-                font-size: 8px;
-                padding: 5px 8px;
+                font-size: 14px;
             }
         }
     </style>
@@ -688,16 +626,20 @@
             <a href="index.html" class="logo">Wishborn Care</a>
             <ul class="nav-links">
                 <li><a href="brand-story.html">Brand Story</a></li>
-                <li><a href="#products">Products</a></li>
+                <li><a href="products.html">Products</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
             </ul>
-            <a href="#" class="lang-switch" onclick="alert('English version coming soon!\n영문 사이트 준비 중입니다.'); return false;">
-                <img src="images/kr-flag.png" alt="KR">
-            </a>
+            <div class="lang-switch" tabindex="0">
+                &lt; KR
+                <div class="lang-menu">
+                    <a href="#" onclick="alert('한국어 사이트입니다.'); return false;">KR</a>
+                    <a href="#" onclick="alert('English version coming soon!'); return false;">EN</a>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section - 좌측 텍스트 + 우측 이미지 -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
             <div class="hero-text">
@@ -714,7 +656,7 @@
         </div>
     </section>
 
-    <!-- Best Section - 4개 제품 -->
+    <!-- Best Seller Section -->
     <section class="best">
         <div class="container">
             <h2 class="section-title">BEST SELLER</h2>
@@ -762,119 +704,40 @@
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section id="products" class="products">
+    <!-- View All Products Button -->
+    <section style="background: white; padding: 30px 0; text-align: center;">
+        <a href="products.html" class="view-all-btn">전체 제품 보기</a>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section id="brand-story" class="brand-story">
         <div class="container">
-            <h2 class="section-title">Product Lineup</h2>
-            
-            <!-- Product Grid -->
-            <div class="product-grid">
-                <!-- Product 1: Relaxing Leg Cream (Essential Care) -->
-                <div class="product-card">
-                    <div class="product-card-image">
-                        <img src="images/product-relaxing-leg-new.jpg" alt="Relaxing Leg Cream">
-                        <span class="product-badge status-available">판매중</span>
+            <div class="brand-story-container">
+                <h2 class="brand-story-highlight">
+                    소망이 태어나다<br>
+                    Wishborn Care
+                </h2>
+                <p class="brand-story-text">
+                    난임의 여정을 직접 걸어온 사람들이 만든 브랜드입니다.<br>
+                    시술 중에도 안심하고 사용할 수 있는 안전한 제품,<br>
+                    당신의 몸과 마음을 함께 돌보는 진심 어린 케어를 제공합니다.
+                </p>
+                
+                <div class="brand-story-values">
+                    <div class="story-value-card">
+                        <h4>진짜 공감</h4>
+                        <p>난임부터 임신까지, 그 여정의 모든 순간을 이해하고 실질적인 위로가 되는 제품을 만듭니다.</p>
                     </div>
-                    <div class="product-card-content">
-                        <span class="product-category">Essential Care</span>
-                        <h3>Relaxing Leg Cream</h3>
-                        <p class="product-tagline">하루 종일 붓고 무거운 다리, 즉시 가볍게</p>
-                        <div class="product-price-box">
-                            <span class="price-amount">24,900</span>
-                            <span class="price-label">원</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 2: All-in-One Cream (Essential Care) -->
-                <div class="product-card">
-                    <div class="product-card-image">
-                        <img src="images/product-allinone-new.jpg" alt="All-in-One Cream">
-                        <span class="product-badge status-available">판매중</span>
-                    </div>
-                    <div class="product-card-content">
-                        <span class="product-category">Essential Care</span>
-                        <h3>All-in-One Cream</h3>
-                        <p class="product-tagline">올인원 수분 크림</p>
-                        <div class="product-price-box">
-                            <span class="price-amount">24,900</span>
-                            <span class="price-label">원</span>
-                        </div>
+                    <div class="story-value-card">
+                        <h4>안전한 성분</h4>
+                        <p>제약 전문가와 함께 시술 단계별로 안전한 성분을 선별하고 검증하여 안심하고 사용할 수 있습니다.</p>
                     </div>
                 </div>
-
-                <!-- Product 3: Nipple Care Cream (Advanced Care) -->
-                <div class="product-card">
-                    <div class="product-card-image">
-                        <img src="images/product-nipple-new.jpg" alt="Nipple Care Cream">
-                        <span class="product-badge status-coming">출시 예정</span>
-                    </div>
-                    <div class="product-card-content">
-                        <span class="product-category">Advanced Care</span>
-                        <h3>Nipple Care Cream</h3>
-                        <p class="product-tagline">니플 케어 크림</p>
-                        <div class="product-price-box">
-                            <span class="price-amount">22,900</span>
-                            <span class="price-label">원</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 4: Soothing Belly Balm (Advanced Care) -->
-                <div class="product-card">
-                    <div class="product-card-image">
-                        <img src="images/product-belly-balm.jpg" alt="Soothing Belly Balm">
-                        <span class="product-badge status-coming">출시 예정</span>
-                    </div>
-                    <div class="product-card-content">
-                        <span class="product-category">Advanced Care</span>
-                        <h3>Soothing Belly Balm</h3>
-                        <p class="product-tagline">수딩 벨리 밤</p>
-                        <div class="product-price-box">
-                            <span class="price-amount">28,900</span>
-                            <span class="price-label">원</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 5: Baby Diaper Rash Cream - Pink (Baby Care) -->
-                <div class="product-card">
-                    <div class="product-card-image">
-                        <img src="images/product-diaper-pink.jpg" alt="Baby Diaper Rash Cream">
-                        <span class="product-badge status-coming">출시 예정</span>
-                    </div>
-                    <div class="product-card-content">
-                        <span class="product-category">Baby Care</span>
-                        <h3>Baby Diaper Rash Cream</h3>
-                        <p class="product-tagline">기저귀 발진 크림</p>
-                        <div class="product-price-box">
-                            <span class="price-amount">19,900</span>
-                            <span class="price-label">원</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 6: Baby Diaper Rash Cream - Mint (Baby Care) -->
-                <div class="product-card">
-                    <div class="product-card-image">
-                        <img src="images/product-diaper-mint.jpg" alt="Baby Diaper Rash Cream">
-                        <span class="product-badge status-coming">출시 예정</span>
-                    </div>
-                    <div class="product-card-content">
-                        <span class="product-category">Baby Care</span>
-                        <h3>Baby Diaper Rash Cream</h3>
-                        <p class="product-tagline">기저귀 발진 크림</p>
-                        <div class="product-price-box">
-                            <span class="price-amount">19,900</span>
-                            <span class="price-label">원</span>
-                        </div>
-                    </div>
-                </div>
+                
+                <a href="brand-story.html" class="view-all-btn">브랜드 스토리 더보기</a>
             </div>
         </div>
     </section>
-
-
 
     <!-- Footer -->
     <footer class="footer">
