@@ -83,50 +83,210 @@
         .lang-switch {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-decoration: none;
+            gap: 6px;
             color: var(--deep-brown);
-            font-weight: 700;
-            font-size: 10.5px;
-            padding: 0;
-            border: none;
-            background: transparent;
+            font-weight: 600;
+            font-size: 10.21px;
             cursor: pointer;
             position: relative;
+            padding: 8px 12px;
+            border: 1px solid var(--warm-beige);
+            border-radius: 8px;
+            background: white;
+            transition: all 0.3s;
         }
 
-        .lang-switch:hover { color: var(--warm-terracotta); }
+        .lang-switch:hover {
+            border-color: var(--warm-terracotta);
+        }
+
+        .lang-switch.active {
+            border-color: var(--warm-terracotta);
+        }
+
+        .lang-current {
+            font-weight: 600;
+        }
+
+        .lang-arrow {
+            font-size: 10px;
+            transition: transform 0.3s;
+        }
+
+        .lang-switch.active .lang-arrow {
+            transform: rotate(180deg);
+        }
 
         .lang-menu {
             display: none;
             position: absolute;
-            top: 100%;
+            top: calc(100% + 8px);
             right: 0;
-            margin-top: 8px;
             background: white;
-            border: 2px solid var(--warm-beige);
-            border-radius: 12px;
+            border: 1px solid var(--warm-beige);
+            border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            min-width: 80px;
+            min-width: 100%;
+            overflow: hidden;
             z-index: 100;
         }
 
-        .lang-switch:hover .lang-menu,
-        .lang-switch:focus .lang-menu { display: block; }
-
-        .lang-menu a {
+        .lang-menu.active {
             display: block;
-            padding: 10px 16px;
-            color: var(--deep-brown);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: background 0.3s;
         }
 
-        .lang-menu a:hover { background: var(--light-warm); }
-        .lang-menu a:first-child { border-radius: 10px 10px 0 0; }
-        .lang-menu a:last-child { border-radius: 0 0 10px 10px; }
+        .lang-option {
+            display: block;
+            padding: 12px 16px;
+            color: var(--deep-brown);
+            text-decoration: none;
+            font-size: 10.21px;
+            font-weight: 500;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+
+        .lang-option:hover {
+            background: var(--light-warm);
+        }
+
+        .lang-option.selected {
+            background: var(--light-warm);
+            font-weight: 600;
+            color: var(--warm-terracotta);
+        }
+
+        /* Mobile Menu - Samsung style */
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--deep-brown);
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100%;
+            background: white;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            overflow-y: auto;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--warm-beige);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mobile-menu-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--deep-brown);
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-items {
+            padding: 20px 0;
+        }
+
+        .mobile-menu-items a {
+            display: block;
+            padding: 16px 20px;
+            color: var(--deep-brown);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            border-bottom: 1px solid var(--warm-beige);
+            transition: background 0.2s;
+        }
+
+        .mobile-menu-items a:hover {
+            background: var(--light-warm);
+        }
+
+        .mobile-lang-switch {
+            padding: 20px;
+            border-top: 1px solid var(--warm-beige);
+        }
+
+        .mobile-lang-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .mobile-lang-option {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid var(--warm-beige);
+            border-radius: 8px;
+            color: var(--deep-brown);
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mobile-lang-option.selected {
+            background: var(--warm-terracotta);
+            color: white;
+            border-color: var(--warm-terracotta);
+        }
 
         /* Hero Video Section */
         .hero-video {
@@ -142,7 +302,18 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
+            object-position: center center;
+            animation: kenBurns 20s ease-in-out infinite alternate;
+            transform-origin: center center;
+        }
+        
+        @keyframes kenBurns {
+            0% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1.15);
+            }
         }
 
         .hero-overlay {
@@ -451,7 +622,7 @@
         /* Footer */
         .footer {
             background: white;
-            padding: 60px 0 30px;
+            padding: 40px 0 20px;
             border-top: 1px solid var(--warm-beige);
         }
 
@@ -464,8 +635,8 @@
         .footer-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            margin-bottom: 40px;
+            gap: 40px;
+            margin-bottom: 25px;
         }
 
         .footer-brand .footer-logo {
@@ -483,9 +654,10 @@
         }
 
         .footer-contact p {
-            margin-bottom: 12px;
+            margin-bottom: 8px;
             color: var(--deep-brown);
             font-size: 14px;
+            line-height: 1.5;
         }
 
         .footer-contact strong {
@@ -495,15 +667,15 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
+            padding-top: 20px;
             border-top: 1px solid var(--warm-beige);
         }
 
         .footer-info {
-            font-size: 13px;
+            font-size: 11px;
             color: var(--deep-brown);
             opacity: 0.7;
-            line-height: 1.8;
+            line-height: 1.6;
         }
 
         /* Responsive Design */
@@ -514,39 +686,122 @@
         }
 
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .lang-switch {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
             .nav-container { padding: 0 20px; }
             .logo { font-size: 20px; }
-            .nav-links { gap: 20px; margin-left: 0; }
-            .nav-links a { font-size: 13px; }
-            .lang-switch { font-size: 9px; }
-            .hero-video { height: 60vh; min-height: 400px; margin-top: 60px; }
-            .hero-content h1 { font-size: 32px; }
-            .hero-content p { font-size: 16px; }
-            .section-title { font-size: 32px; margin-bottom: 35px; }
-            .philosophy-container { grid-template-columns: 1fr; gap: 30px; }
-            .philosophy-image { height: 300px; }
-            .philosophy-content { padding: 20px; }
-            .philosophy-content h2 { font-size: 28px; }
-            .philosophy-content p { font-size: 16px; }
-            .values-grid { grid-template-columns: 1fr; }
-            .closing-message h2 { font-size: 28px; }
-            .closing-message p { font-size: 16px; }
+            .hero-video { height: 50vh; min-height: 350px; margin-top: 60px; }
+            .hero-content h1 { font-size: 28px; }
+            .hero-content p { font-size: 15px; }
+            section { padding: 50px 0; }
+            .section-title { font-size: 26px; margin-bottom: 25px; }
+            .brand-name { font-size: 36px; margin-bottom: 20px; }
+            .etymology-part { padding: 20px 25px; }
+            .etymology-part h3 { font-size: 24px; }
+            .etymology-part p { font-size: 15px; }
+            .etymology-meaning { font-size: 15px; }
+            .korean-name { font-size: 16px; }
+            .journey-intro p { font-size: 15px; }
+            .journey-stage { padding: 20px; }
+            .journey-stage h3 { font-size: 17px; }
+            .journey-stage p { font-size: 14px; }
+            .empathy-quote { padding: 25px; }
+            .philosophy-container { grid-template-columns: 1fr; gap: 25px; }
+            .philosophy-image { height: 280px; }
+            .philosophy-content { padding: 18px; }
+            .philosophy-content h2 { font-size: 24px; }
+            .philosophy-content p { font-size: 15px; }
+            .values-grid { grid-template-columns: 1fr; gap: 20px; }
+            .value-card { padding: 25px; }
+            .value-card h3 { font-size: 18px; }
+            .value-card p { font-size: 14px; }
+            .closing-message h2 { font-size: 24px; }
+            .closing-message p { font-size: 15px; }
             .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            
+            .footer-contact p {
+                font-size: 12px;
+                line-height: 1.8;
+            }
+            
+            .footer-contact strong {
+                display: inline-block;
+                min-width: 70px;
+            }
+            
+            .footer {
+                padding: 30px 0 15px;
+            }
+            
+            .footer-grid {
+                gap: 25px;
+                margin-bottom: 20px;
+            }
+            
+            .footer-bottom {
+                padding-top: 15px;
+            }
+            
+            .footer-info {
+                font-size: 10px;
+                line-height: 1.6;
+            }
         }
 
         @media (max-width: 480px) {
             .logo { font-size: 18px; }
             .nav-links { gap: 15px; font-size: 12px; }
             .nav-links a { font-size: 12px; }
-            .hero-video { height: 50vh; min-height: 350px; }
-            .hero-content h1 { font-size: 26px; }
-            .hero-content p { font-size: 14px; }
-            .section-title { font-size: 26px; }
-            .philosophy-image { height: 250px; }
-            .philosophy-content h2 { font-size: 24px; }
-            .philosophy-content p { font-size: 15px; }
-            .closing-message h2 { font-size: 24px; }
-            .closing-message p { font-size: 15px; }
+            .hero-video { height: 45vh; min-height: 320px; }
+            .hero-content h1 { font-size: 24px; }
+            .hero-content p { font-size: 13px; }
+            section { padding: 40px 0; }
+            .section-title { font-size: 22px; margin-bottom: 20px; }
+            .brand-name { font-size: 30px; }
+            .etymology-part { padding: 18px 20px; }
+            .etymology-part h3 { font-size: 20px; }
+            .etymology-part p { font-size: 14px; }
+            .etymology-meaning { font-size: 14px; line-height: 1.7; }
+            .korean-name { font-size: 14px; }
+            .journey-intro p { font-size: 14px; }
+            .journey-stage { padding: 18px; }
+            .journey-stage h3 { font-size: 16px; }
+            .journey-stage p { font-size: 13px; line-height: 1.6; }
+            .stage-number { font-size: 16px; width: 35px; height: 35px; }
+            .empathy-quote { padding: 20px; font-size: 14px; }
+            .philosophy-image { height: 220px; }
+            .philosophy-content { padding: 16px; }
+            .philosophy-content h2 { font-size: 20px; }
+            .philosophy-content p { font-size: 14px; line-height: 1.6; }
+            .value-card { padding: 20px; }
+            .value-card h3 { font-size: 16px; }
+            .value-card p { font-size: 13px; }
+            .closing-message { padding: 35px 20px; }
+            .closing-message h2 { font-size: 20px; margin-bottom: 15px; }
+            .closing-message p { font-size: 14px; line-height: 1.7; }
+            
+            .footer-contact p {
+                font-size: 11px;
+                white-space: nowrap;
+            }
+            
+            .footer-info {
+                font-size: 9px;
+            }
+            
+            .footer-container {
+                padding: 0 20px;
+            }
         }
     </style>
 </head>
@@ -556,26 +811,59 @@
         <div class="nav-container">
             <a href="index.html" class="logo">Wishborn Care</a>
             <ul class="nav-links">
-                <li><a href="brand-story.html">Brand Story</a></li>
+                <li><a href="brand-story.html">Our Story</a></li>
                 <li><a href="products.html">Products</a></li>
-                <li><a href="#contact">Contact Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
             </ul>
-            <div class="lang-switch" tabindex="0">
-                &lt; KR
-                <div class="lang-menu">
-                    <a href="#ko">한국어 (KR)</a>
-                    <a href="#en">English (EN)</a>
+            
+            <!-- Desktop Language Switcher -->
+            <div class="lang-switch" id="langSwitch">
+                <span class="lang-current">KR</span>
+                <span class="lang-arrow">▼</span>
+                <div class="lang-menu" id="langMenu">
+                    <div class="lang-option selected" data-lang="kr">한국어 (KR)</div>
+                    <div class="lang-option" data-lang="en">English (EN)</div>
                 </div>
             </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <div class="logo">Wishborn Care</div>
+            <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+        </div>
+        <div class="mobile-menu-items">
+            <a href="index.html">Home</a>
+            <a href="brand-story.html">Our Story</a>
+            <a href="products.html">Products</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="mobile-lang-switch">
+            <div class="mobile-lang-options">
+                <div class="mobile-lang-option selected" data-lang="kr">한국어</div>
+                <div class="mobile-lang-option" data-lang="en">English</div>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Video Section -->
     <section class="hero-video">
         <img src="images/hero-brand-story.jpg" alt="Wishborn Care Brand Story">
         <div class="hero-overlay">
             <div class="hero-content">
-                <h1>Brand Story</h1>
+                <h1>Our Story</h1>
                 <p>당신의 여정을 이해하는 브랜드</p>
             </div>
         </div>
@@ -755,6 +1043,88 @@
         </div>
     </section>
 
+    <script>
+        // Desktop Language Switcher
+        const langSwitch = document.getElementById('langSwitch');
+        const langMenu = document.getElementById('langMenu');
+        
+        if (langSwitch) {
+            langSwitch.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langSwitch.classList.toggle('active');
+                langMenu.classList.toggle('active');
+            });
+
+            // Close when clicking outside
+            document.addEventListener('click', function() {
+                langSwitch.classList.remove('active');
+                langMenu.classList.remove('active');
+            });
+
+            // Language option selection
+            document.querySelectorAll('.lang-option').forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const lang = this.dataset.lang.toUpperCase();
+                    document.querySelector('.lang-current').textContent = lang;
+                    
+                    // Update selected state
+                    document.querySelectorAll('.lang-option').forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    // Close menu
+                    langSwitch.classList.remove('active');
+                    langMenu.classList.remove('active');
+                    
+                    // Alert for English (not yet available)
+                    if (lang === 'EN') {
+                        alert('English version coming soon!\n영문 사이트 준비 중입니다.');
+                    }
+                });
+            });
+        }
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+        function openMobileMenu() {
+            mobileMenuBtn.classList.add('active');
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileMenuBtn.classList.remove('active');
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Mobile Language Switcher
+        document.querySelectorAll('.mobile-lang-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const lang = this.dataset.lang.toUpperCase();
+                
+                // Update selected state
+                document.querySelectorAll('.mobile-lang-option').forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                // Alert for English
+                if (lang === 'EN') {
+                    alert('English version coming soon!\n영문 사이트 준비 중입니다.');
+                }
+            });
+        });
+    </script>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
@@ -774,7 +1144,7 @@
             <div class="footer-bottom">
                 <p class="footer-info">
                     © 2026 Wishborn Care. All rights reserved.<br>
-                    당신의 여정, 가볍게 함께
+                    당신의 여정, 곁에서 함께
                 </p>
             </div>
         </div>
